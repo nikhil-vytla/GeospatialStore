@@ -103,7 +103,6 @@ def upload_image():
                 filenames.append(name)
 
         results = []
-        
         # Iterate over all opf the valid files and save to the filesystem
         for file, name in zip(images, filenames):
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], name)
@@ -189,14 +188,7 @@ def upload_windmill():
 
     return render_template('windmill_upload.html')
 
-# @main.route('/data/uploads/<filepath>')
-# def serve_file(filepath):
-#     """ Serve back the uploaded image to image_result.html 
-
-#     """
-#     return send_from_directory(app.config['UPLOAD_FOLDER'], filename=filepath)
-
-@main.route('/data/processed/<filepath>')
+@main.route('/data/processed/<string:filepath>')
 def serve_file(filepath):
     print('data'+filepath[5:])
     return send_from_directory('data/', filename=filepath[5:])
